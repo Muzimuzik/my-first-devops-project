@@ -1,17 +1,20 @@
-name: Lints DevOps Project
+name: Lint DevOps Project
+
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
-
+    branches: [ "main" ]
 
 jobs:
-  validate: 
+  validate:
     runs-on: ubuntu-latest
     steps:
-    -name: Checkout repository
-     uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-     -name: Validate Docker Compose file 
-     run: docker compose config 
+      # Используем готовый официальный линтер для YAML-файлов
+      - name: Run yamllint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: docker-compose.yml
