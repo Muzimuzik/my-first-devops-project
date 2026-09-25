@@ -1,0 +1,14 @@
+services: 
+  - type: redis
+    name: redis-db
+    is AllowList: []
+
+
+  - type: web 
+    name: voting-app
+    runtime: docker
+    repo: https://github.com/Muzimuzik/my-first-devops-project/settings
+    plan: free
+    envVars:
+      - key: REDIS_URL
+        value: redis://redis-db:6379
