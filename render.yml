@@ -1,7 +1,7 @@
 services: 
   - type: redis
     name: redis-db
-    is AllowList: []
+    ipAllowList: []
 
 
   - type: web 
